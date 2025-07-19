@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noriysi - Connecting Diaspora Communities</title>
+    <!-- Update the CSS path to match your file structure -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1 class="logo">Noriysi</h1>
+            <p class="tagline">Connecting diaspora communities</p>
+            <a href="#join" class="btn btn-primary">Join the Communities</a>
+        </div>
+    </header>
+
+    <!-- About and Story Section -->
+    <div class="about-story-container">
+        <!-- About Section -->
+        <section class="about-section">
+            <h2>About</h2>
+            <div class="tabs-container">
+                <div class="tab" id="why-tab">
+                    <button class="tab-btn">Why Noriysi Exists</button>
+                    <div class="tab-content">
+                        <div class="tab-content-inner">
+                            <p>Noriysi was created to reveal the invisible thread most migrants share in their story. It's a space to trace journeys, preserve stories, and understand where we've come from and where we're going. 
+                                From first generations to children of migrants, from any continent, there are so many untold stories.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab" id="building-tab">
+                    <button class="tab-btn">Building Community</button>
+                    <div class="tab-content">
+                        <div class="tab-content-inner">
+                            <p>At its heart, Noriysi is about community. We have seen various diaspora groups connect and build their communities back up in a new land. 
+                                This was part of the key inspiration behind Noriysi's existence. Picture a 3rd generation connecting with their culture from a first generation and relearning this culture and history. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab" id="history-tab">
+                    <button class="tab-btn">Understanding History</button>
+                    <div class="tab-content">
+                        <div class="tab-content-inner">
+                            <p>Migration is not just movement — it's memory. By collecting individual stories and origins, Noriysi helps us piece together a fuller picture, discovering the why, 
+                                the courage, and the heart of the people behind the journey. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab" id="data-tab">
+                    <button class="tab-btn">From Data to Trends</button>
+                    <div class="tab-content">
+                        <div class="tab-content-inner">
+                            <p>Every profile, every story adds to a growing dataset that reveals patterns of movement, connection, and change. 
+                                This isn't just information — it's insight that can shape how we understand diaspora communities</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story Section -->
+        <section class="story-section">
+            <h2>Story</h2>
+            <div class="story-content">
+                <p>On the 10th of march, I, my sister and my mom landed in Amsterdam. My dad and his friend waiting to pick us up. My dad's friend asked my mom "do you smoke?", with a confused look on her face she replies no. He said well you are about to become a smoker. As we stepped outside the airport, we indeed started smoking. I remember the scent in air, the chill and our breath becoming visible for the first time.</p>
+                <a href="#" class="more-stories-btn" id="open-carousel">More Stories</a>  
+                <!--Link to Story submission-->              
+                <a href="https://forms.gle/svGMCbZoApFhT1Hu8" class="btn btn-secondary">Share Your Story</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Carousel Modal for Stories -->
+    <div id="story-carousel-modal" class="carousel-modal" style="display:none;">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content">
+            <button class="carousel-close" id="close-carousel">&times;</button>
+            <button class="carousel-arrow left" id="carousel-prev">&#8592;</button>
+            <div class="carousel-card-stack">
+                <!-- Cards will be injected by JS -->
+            </div>
+            <button class="carousel-arrow right" id="carousel-next">&#8594;</button>
+        </div>
+    </div>
+
+    <!-- Join Community Section -->
+    <section id="join" class="join-section">
+        <div class="container">
+            <h2>Join the community</h2>
+            <div class="form-container">
+                <form id="join-form">
+                    <!-- Personal Information -->
+                    <h3 class="form-section-title">Personal Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">First name*</label>
+                            <input type="text" id="first-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Surname/Last name*</label>
+                            <input type="text" id="last-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="middle-name">Middle name</label>
+                            <input type="text" id="middle-name">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email*</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Date of birth*</label>
+                            <input type="date" id="dob" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="country-of-birth">Country of birth*</label>
+                            <select id="country-of-birth" required>
+                                <option value="">Select country</option>
+                                <!-- Countries will be populated by JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Generation Information -->
+                    <h3 class="form-section-title">Generation Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="generation">
+                                What generation are you*
+                                <span class="info-icon" id="gen-info">i</span>
+                            </label>
+                            <div class="tooltip" id="gen-tooltip">
+                                <p><strong>First Generation (1st Gen):</strong> Individuals who were born in another country and immigrated.</p>
+                                <p><strong>Generation 1.5 (1.5 Gen):</strong> Individuals who immigrated to a new country before or during their early teens.</p>
+                                <p><strong>Second Generation (2nd Gen):</strong> Individuals who were born in the country their parents immigrated to.</p>
+                                <p><strong>Third Generation (3rd Gen) & Beyond:</strong> Individuals whose grandparents or earlier ancestors immigrated.</p>
+                            </div>
+                            <select id="generation" required>
+                                <option value="">Select generation</option>
+                                <option value="1st">First Generation (1st Gen)</option>
+                                <option value="1.5">Generation 1.5 (1.5 Gen)</option>
+                                <option value="2nd">Second Generation (2nd Gen)</option>
+                                <option value="3rd">Third Generation (3rd Gen) & Beyond</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Migration Date Fields (initially hidden) -->
+                    <div class="form-row" id="migration-date-row" style="display: none;">
+                        <div class="form-group">
+                            <label for="migration-month">Month of migration</label>
+                            <select id="migration-month">
+                                <option value="">Select month</option>
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="migration-year">Year of migration*</label>
+                            <input type="number" id="migration-year" min="1900" max="2025" placeholder="YYYY">
+                        </div>
+                    </div>
+                    
+                    <!-- Current Location -->
+                    <h3 class="form-section-title">Current Location</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="origin">Country of origin*</label>
+                            <select id="origin" required>
+                                <option value="">Select country</option>
+                                <!-- Countries will be populated by JavaScript -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="origin-city">City/Province of origin</label>
+                            <select id="origin-city">
+                                <option value="">Select city/province</option>
+                                <option value="unknown">I don't know</option>
+                                <!-- Cities will be populated by JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="residence">Country of residence*</label>
+                            <select id="residence" required>
+                                <option value="">Select country</option>
+                                <!-- Countries will be populated by JavaScript -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="residence-city">City/Province of residence</label>
+                            <select id="residence-city">
+                                <option value="">Select city/province</option>
+                                <option value="unknown">I don't know</option>
+                                <!-- Cities will be populated by JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+                 
+                    
+                    <!-- Migration History -->
+                    <h3 class="form-section-title">Migration History</h3>
+                    <div class="form-row">
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="has-migration-history" name="has-migration-history">
+                            <label for="has-migration-history">Have you lived in other countries before your current country of residence?</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Migration History Container (initially hidden) -->
+                    <div id="migration-history-container" style="display: none;">
+                        <div class="migration-entry">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="from-country-0">Lived in Country*</label>
+                                    <select id="from-country-0" class="from-country" required>
+                                        <option value="">Select country</option>
+                                        <!-- Countries will be populated by JavaScript -->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="from-city-0">City/Province</label>
+                                    <select id="from-city-0" class="from-city">
+                                        <option value="">Select city/province</option>
+                                        <option value="unknown">I don't know</option>
+                                        <!-- Cities will be populated by JavaScript -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="to-country-0">Moved To Country*</label>
+                                    <select id="to-country-0" class="to-country" required>
+                                        <option value="">Select country</option>
+                                        <!-- Countries will be populated by JavaScript -->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="to-city-0">City/Province</label>
+                                    <select id="to-city-0" class="to-city">
+                                        <option value="">Select city/province</option>
+                                        <option value="unknown">I don't know</option>
+                                        <!-- Cities will be populated by JavaScript -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="migration-month-0">Month of migration</label>
+                                    <select id="migration-month-0" class="migration-month">
+                                        <option value="">Select month</option>
+                                        <option value="1">January</option>
+                                        <option value="2">February</option>
+                                        <option value="3">March</option>
+                                        <option value="4">April</option>
+                                        <option value="5">May</option>
+                                        <option value="6">June</option>
+                                        <option value="7">July</option>
+                                        <option value="8">August</option>
+                                        <option value="9">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">November</option>
+                                        <option value="12">December</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="migration-year-0">Year of migration*</label>
+                                    <input type="number" id="migration-year-0" class="migration-year" min="1900" max="2025" placeholder="YYYY" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="migration-notes-0">Notes</label>
+                                    <textarea id="migration-notes-0" class="migration-notes" placeholder="Any additional information about this migration"></textarea>
+                                </div>
+                            </div>
+                            <hr class="migration-divider">
+                        </div>
+                        
+                        <div class="form-row">
+                            <button type="button" id="add-migration" class="btn btn-secondary">Add Another Move</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row submit-row">
+                        <button type="submit" class="btn btn-primary">Sign Up Now</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Stories Section -->
+    <!--
+    <section id="more-stories" class="featured-stories">
+        <div class="container">
+            <h2>Featured Story</h2>
+            <div class="stories-container">
+                <div class="story-card">
+                    <div class="story-image" style="background-image: url('/placeholder.svg?height=200&width=300');"></div>
+                    <div class="story-details">
+                        <div class="story-category">1st Gen | Personal</div>
+                        <h3 class="story-title">Our first day in America</h3>
+                        <p class="story-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="story-image" style="background-image: url('/placeholder.svg?height=200&width=300');"></div>
+                    <div class="story-details">
+                        <div class="story-category">2nd Gen | Communal</div>
+                        <h3 class="story-title">Visiting my home country</h3>
+                        <p class="story-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="story-image" style="background-image: url('/placeholder.svg?height=200&width=300');"></div>
+                    <div class="story-details">
+                        <div class="story-category">3rd Gen | Residential</div>
+                        <h3 class="story-title">I have lived in 3 countries</h3>
+                        <p class="story-excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="share-story-container">
+                <a href="#" class="btn btn-secondary">Share Your Story</a>
+            </div>
+        </div>
+    </section>
+    -->
+
+    <!-- Footer with Social Media Icons -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Noriysi. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/noriysi/" target="_blank" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@noriysi" target="_blank" class="social-icon">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript files -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
