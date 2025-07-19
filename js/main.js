@@ -852,6 +852,19 @@ document.addEventListener('DOMContentLoaded', function() {
             hasMigrationHistory: document.getElementById('has-migration-history').checked
         };
 
+        // Always define migrationHistory as an array
+        formData.migrationHistory = [];
+        if (formData.hasMigrationHistory) {
+            const migrationEntries = document.querySelectorAll('.migration-entry');
+            migrationEntries.forEach((entry, index) => {
+                formData.migrationHistory.push({
+                    fromCountry: document.getElementById(`from-country-${index}`),
+                    toCountry: document.getElementById(`to-country-${index}`),
+                    migrationYear: document.getElementById(`migration-year-${index}`)
+                });
+            });
+        }
+
         console.log('Form data collected:', formData);
 
         // Validate form
