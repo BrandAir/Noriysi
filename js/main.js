@@ -876,7 +876,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         console.log('Form validation passed');
 
-        // Prepare data for Supabase
+        // Prepare data for Supabase - mapping form fields to correct database columns
         const memberData = {
             first_name: formData.firstName.value,
             last_name: formData.lastName.value,
@@ -884,6 +884,7 @@ document.addEventListener('DOMContentLoaded', function() {
             email: formData.email.value,
             date_of_birth: formData.dob.value,
             country_of_birth: formData.countryOfBirth.value,
+            city_province_of_birth: null, // This field exists in DB but not in form
             generation: formData.generation.value,
             country_of_origin: formData.origin.value,
             city_province_of_origin: document.getElementById('origin-city').value || null,
@@ -902,6 +903,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         console.log('Member data prepared:', memberData);
+        console.log('Member data keys:', Object.keys(memberData));
         
         try {
             console.log('Attempting to insert into Supabase...');
@@ -925,8 +927,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 const migrationHistory = [];
                 const migrationEntries = document.querySelectorAll('.migration-entry');
                 
+                console.log('Found migration entries:', migrationEntries.length);
+                
                 migrationEntries.forEach((entry, index) => {
-                    migrationHistory.push({
+                    const migrationEntry = {
                         member_id: userData[0].id,
                         from_country: document.getElementById(`from-country-${index}`).value,
                         from_city_province: document.getElementById(`from-city-${index}`).value || null,
@@ -935,7 +939,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         migration_month: document.getElementById(`migration-month-${index}`).value || null,
                         migration_year: document.getElementById(`migration-year-${index}`).value,
                         notes: document.getElementById(`migration-notes-${index}`).value || null
-                    });
+                    };
+                    
+                    console.log(`Migration entry ${index}:`, migrationEntry);
+                    migrationHistory.push(migrationEntry);
                 });
                 
                 console.log('Migration history prepared:', migrationHistory);
